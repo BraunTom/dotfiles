@@ -1,0 +1,42 @@
+set ruler
+set autoindent
+set smartindent
+set laststatus=2
+set showcmd
+set hlsearch
+set ignorecase
+set smartcase
+set confirm
+set visualbell
+set t_vb=
+set cmdheight=2
+set textwidth=120
+"set foldmethod=indent
+
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%' . (&textwidth + 1) . 'v', 100)
+
+
+set spelllang=en,de
+" set spell
+
+command Q q
+command W w
+command Wq wq
+command WQ wq
+
+
+call plug#begin('~/.vim/plugged')
+
+	Plug 'scrooloose/nerdtree'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'lervag/vimtex'
+    Plug 'Yggdroot/indentLine'
+
+call plug#end()
+
+filetype plugin on
+syntax on
+set omnifunc=syntaxcomplete#Complete
+
+let NERDTreeIgnore = ['\.aux$']

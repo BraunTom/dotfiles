@@ -1,0 +1,1 @@
+iabbrev fn function
