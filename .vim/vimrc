@@ -28,6 +28,7 @@ command WQ wq
 
 call plug#begin('~/.vim/plugged')
 
+    Plug 'valloric/youcompleteme'
 	Plug 'scrooloose/nerdtree'
     Plug 'sheerun/vim-polyglot'
     Plug 'lervag/vimtex'

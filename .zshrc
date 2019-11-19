@@ -15,6 +15,11 @@ alias zshrc=vim\ ~/.zshrc
 alias tmuxrc=vim\ ~/.tmux.conf
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 stty -ixon
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+replace() {
+    find $1 -type f -regex ".*\.tex' -exec sed -i '' 's/cite{$2}/autoref{$3}/g" {} +
+}
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,6 +97,8 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR='vim'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -103,3 +110,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/completion.zsh.inc'; fi
