@@ -13,6 +13,11 @@ ZSH_THEME="agnoster"
 alias vimrc=vim\ ~/.vim/vimrc
 alias zshrc=vim\ ~/.zshrc
 alias tmuxrc=vim\ ~/.tmux.conf
+
+alias tl=tmux\ list-sessions
+alias ta=tmux\ attach-session\ -t
+alias mux=tmuxinator
+
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 stty -ixon
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -111,8 +116,17 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/path.zsh.inc'; fi
+# Adds flutter to the path
+export PATH="/Users/tom/flutter/bin:${PATH}"
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tom/Desktop/Studium/Master/Wi 19/Mocc/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# Finally Vi shortcuts in the shell :)
+set -o vi
+
+# download youtube video and convert to mp3
+function dfyt() {
+    title=$(ytdl -i $1 | head -n 2 | tail -n 1 | cut -d' ' -f 2-)
+    ytdl $1 | ffmpeg -i pipe:0 -b:a 192K -vn $title.mp3 
+}
+

@@ -1,4 +1,4 @@
-set ruler
+set ruler 
 set autoindent
 set smartindent
 set laststatus=2
@@ -20,6 +20,13 @@ call matchadd('ColorColumn', '\%' . (&textwidth + 1) . 'v', 100)
 set spelllang=en,de
 " set spell
 
+" set UI language to english
+set langmenu=en_US
+let $LANG='en_US'
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+" alias some commands I type incorrectly
 command Q q
 command W w
 command Wq wq
@@ -29,10 +36,13 @@ command WQ wq
 call plug#begin('~/.vim/plugged')
 
     Plug 'valloric/youcompleteme'
+    Plug 'skywind3000/asyncrun.vim'
+    Plug 'embear/vim-localvimrc'
 	Plug 'scrooloose/nerdtree'
     Plug 'sheerun/vim-polyglot'
     Plug 'lervag/vimtex'
     Plug 'Yggdroot/indentLine'
+    Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
 
@@ -41,3 +51,12 @@ syntax on
 set omnifunc=syntaxcomplete#Complete
 
 let NERDTreeIgnore = ['\.aux$']
+
+" activate rainbow brackets for every file type
+let g:rainbow_active = 1
+
+" remove security feautures of localvimrc
+let g:localvimrc_sandbox = 0
+let g:localvimrc_ask = 0
+
+let g:ycm_autoclose_preview_window_after_completion = 1
