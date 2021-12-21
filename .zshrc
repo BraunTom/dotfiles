@@ -22,9 +22,6 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 stty -ixon
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-replace() {
-    find $1 -type f -regex ".*\.tex' -exec sed -i '' 's/cite{$2}/autoref{$3}/g" {} +
-}
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -121,12 +118,26 @@ export PATH="/Users/tom/flutter/bin:${PATH}"
 
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
+export PATH="/Users/tom/.cargo/bin:$PATH"
+
 # Finally Vi shortcuts in the shell :)
 set -o vi
 
 # download youtube video and convert to mp3
 function dfyt() {
-    title=$(ytdl -i $1 | head -n 2 | tail -n 1 | cut -d' ' -f 2-)
-    ytdl $1 | ffmpeg -i pipe:0 -b:a 192K -vn $title.mp3 
+    python3 =youtube-dl -x --audio-format mp3 --embed-thumbnail --add-metadata --no-playlist $1
 }
 
+# import ocaml path
+eval $(opam env)
+
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# disable homebrew auto update
+export HOMEBREW_NO_AUTO_UPDATE=1
+
+mkcd () {
+  mkdir "$1"
+  cd "$1"
+}
